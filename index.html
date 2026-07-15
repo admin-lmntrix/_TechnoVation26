@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECHNOVATION '26 · Greeks to Geeks — M.P. Birla Foundation HS School</title>
+<meta name="description" content="TECHNOVATION '26 presents Greeks to Geeks: The Evolution of Human Intelligence. The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala — 27 July 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/jpeg" href="logo-stag.jpg">
+</head>
+<body>
+<div class="circuit-trace"></div><div class="hud-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="grain"></div><div class="scan"></div><div class="vignette"></div>
+<canvas id="fx-bg" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Technovation home">
+    <span class="mark">
+      <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="2" fill="#0a0c10" stroke="#dde6f1" stroke-opacity=".5"/><path d="M9 23V12h1.6v11zm5.2 0V12H16v11zm5.2 0V12H21v11zM7 12l9-4.5L25 12zM7 24.5h18V26H7z" fill="#dde6f1"/></svg>
+    </span>
+    <span>TECHNO<b>VATION</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html" class="active">Home</a>
+    <a href="events.html">Events</a>
+    <a href="reps-event.html">Rep's Event</a>
+    <a href="guidelines.html">Guidelines</a>
+    <a href="team.html" data-auth-team>Team</a>
+    <a class="btn sm nav-cta" href="signup.html" data-auth-cta data-magnetic>Sign Up <span class="arr">&rarr;</span></a>
+  </nav>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <canvas id="bg-canvas"></canvas>
+  <div class="hero-fallback"></div>
+
+  <div class="hero-inner">
+    <div class="presents reveal in">
+      <span class="school">M.P. Birla Foundation Higher Secondary School</span>
+      <span class="presents-word">&mdash; presents &mdash;</span>
+    </div>
+    <h1 class="titanic reveal in" data-d="1">Technovation<sup style="font-family:var(--tech);font-size:.24em;color:var(--gold-300);vertical-align:super;letter-spacing:.02em;font-weight:600">'26</sup></h1>
+    <div class="tagline reveal in" data-d="2">
+      <span class="gold-text">Greeks</span>
+      <span class="arrow">/&gt;</span>
+      <span class="silver-text">Geeks</span>
+    </div>
+    <p class="subtitle reveal in" data-d="3">The Evolution of Human Intelligence — from the marble halls of Athens to the silicon of the modern mind.</p>
+    <div class="meta reveal in" data-d="4">
+      <span><b>27</b> July 2026</span><span class="dot"></span>
+      <span>Behala, Kolkata</span><span class="dot"></span>
+      <span>Greeks to Geeks</span>
+    </div>
+    <div class="hero-actions reveal in" data-d="5">
+      <a class="btn solid" href="signup.html" data-magnetic>Register Now <span class="arr">&rarr;</span></a>
+      <a class="btn ghost" href="events.html" data-magnetic>Explore the Events</a>
+    </div>
+  </div>
+
+  <div class="sim-readout" aria-hidden="true">
+    <span class="pip"></span>
+    <span>TRANSMUTE // <b style="color:var(--gold-200)">GREEKS &rarr; GEEKS</b></span>
+    <span style="opacity:.45">·</span>
+    <span>SCORE <b id="g-score" style="color:var(--gold-200)">0</b></span>
+    <span style="opacity:.45">·</span>
+    <span>COMBO <b id="g-combo" style="color:var(--gold-200)">x1</b></span>
+    <span style="opacity:.45">·</span>
+    <span>BEST <b id="g-best" style="color:var(--gold-200)">0</b></span>
+    <span id="g-hint" style="opacity:.6">— sweep glyphs · hold to charge a blast</span>
+  </div>
+
+  <div class="hint" aria-hidden="true"><span class="mouse"></span>Descend</div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section style="padding-block:clamp(40px,6vw,72px)">
+  <div class="wrap">
+    <div class="panel reveal" style="text-align:center">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <span class="eyebrow" style="margin-bottom:24px">The Gates Open In</span>
+      <div id="countdown" style="display:flex;flex-wrap:wrap;gap:clamp(18px,5vw,64px);justify-content:center;margin-top:8px">
+        <div class="cd"><div class="cd-n display gold-text" data-cd="days" style="font-size:clamp(2.6rem,7vw,5rem)">--</div><div class="l tech" style="letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--muted)">Days</div></div>
+        <div class="cd"><div class="cd-n display gold-text" data-cd="hours" style="font-size:clamp(2.6rem,7vw,5rem)">--</div><div class="l tech" style="letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--muted)">Hours</div></div>
+        <div class="cd"><div class="cd-n display gold-text" data-cd="mins" style="font-size:clamp(2.6rem,7vw,5rem)">--</div><div class="l tech" style="letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--muted)">Minutes</div></div>
+        <div class="cd"><div class="cd-n display gold-text" data-cd="secs" style="font-size:clamp(2.6rem,7vw,5rem)">--</div><div class="l tech" style="letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--muted)">Seconds</div></div>
+      </div>
+      <p class="note" style="margin-top:22px">27 July 2026 · Reporting 7:30 AM sharp · M.P. Birla Foundation HS School, Behala</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO STRIP ============ -->
+<section class="pad-y intro-strip" style="padding-block:clamp(54px,7vw,90px)">
+  <div class="wrap">
+    <div class="stmt reveal">
+      <span class="stmt-tag">Σ 01 · The Thesis</span>
+      <p class="stmt-text">Two and a half millennia of human thought, compressed into a single day of competition.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT THE SCHOOL ============ -->
+<section class="pad-y" id="about">
+  <div class="wrap">
+    <div class="split">
+      <div class="kicker-block reveal">
+        <span class="eyebrow two">The Institution</span>
+        <h2>A House of <span class="gold-text">Learning</span></h2>
+        <p class="dropcap">M.P. Birla Foundation Higher Secondary School is in Behala, Kolkata. Alongside a classical education, it puts real weight on technology.</p>
+        <p><strong>Technovation</strong> is its inter-school tech festival. It last ran in 2018, and returns this year for a full day of events open to schools across the city.</p>
+        <div class="hero-actions" style="margin-top:34px">
+          <a class="btn" href="reps-event.html" data-magnetic>The Rep's Event <span class="arr">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="reveal" data-d="2">
+        <div class="panel gold-edge">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="col-art" style="margin-bottom:28px">
+            <span class="greek-col" style="--h:130px"></span>
+            <span class="greek-col" style="--h:170px"></span>
+            <span class="greek-col" style="--h:150px"></span>
+          </div>
+          <div class="stats" style="border:none;background:transparent;grid-template-columns:1fr 1fr">
+            <div class="stat" style="background:transparent;padding:14px"><div class="n gold-text" data-count="16">0</div><div class="l">Events</div></div>
+            <div class="stat" style="background:transparent;padding:14px"><div class="n gold-text" data-count="13">0</div><div class="l">Off-Stage</div></div>
+            <div class="stat" style="background:transparent;padding:14px"><div class="n gold-text" data-count="3">0</div><div class="l">On-Stage</div></div>
+            <div class="stat" style="background:transparent;padding:14px"><div class="n gold-text" data-count="2">0</div><div class="l">Reps / School</div></div>
+          </div>
+          <p class="note" style="margin-top:20px;text-align:center">James Long Sarani, Behala, Kolkata &ndash; 700034</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="gold-rule reveal"></div></div>
+
+<!-- ============ THE THEME ============ -->
+<section class="pad-y" id="theme">
+  <div class="wrap">
+    <div class="kicker-block reveal" data-d="1" style="max-width:720px;margin-inline:auto;text-align:center">
+      <span class="eyebrow two">The Theme · MMXXVI</span>
+      <h2>Greeks <span class="gold-text">to</span> Geeks</h2>
+      <p class="lead" style="margin-inline:auto">It started in the courtyards of Athens.</p>
+      <p style="margin-inline:auto">Greek philosophers built logic and geometry with reason alone. Twenty-five centuries on, that same thinking runs inside a processor. <strong>Greeks to Geeks</strong> follows the thread from myth to machine.</p>
+      <p style="margin-inline:auto">Our emblem says it: a stag built from circuitry, antlers branching like signal traces.</p>
+      <div class="hero-actions" style="margin-top:30px;justify-content:center">
+        <a class="btn solid" href="signup.html" data-magnetic>Claim Your Place <span class="arr">&rarr;</span></a>
+        <a class="btn ghost" href="events.html" data-magnetic>See All Events</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILLARS / WHAT AWAITS ============ -->
+<section class="pad-y">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sh-no">03</span>
+      <div class="sh-main">
+        <span class="sh-eyebrow">What Awaits <span class="sh-line"></span></span>
+        <h2 style="margin:0">Four Pillars of the <span class="gold-text">Festival</span></h2>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal" data-d="1"><div class="fn">I</div><h4>Off-Stage Events</h4><p>Thirteen off-stage arenas — rapid coding, hackathon, AI, robotics, gaming, data, web and film — running across the labs and studios all day.</p></div>
+      <div class="feat reveal" data-d="2"><div class="fn">II</div><h4>On-Stage Events</h4><p>Three events under the lights — the IT Quiz, the application pitch, and the digital-marketing showcase — contested before a live audience.</p></div>
+      <div class="feat reveal" data-d="3"><div class="fn">III</div><h4>The Rep's Event</h4><p>Grid-Lock — a multi-stage digital trail that every participating school's two representatives must face. Mandatory, and unmissable.</p></div>
+      <div class="feat reveal" data-d="4" style="border-color:rgba(206,221,236,.4)"><div class="fn">IV</div><h4>One Electric Day</h4><p>A single day, one campus, fifteen events. From the 7:30 reporting bell to the final results — Greeks to Geeks, start to finish.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="pad-y cta-band">
+  <div class="wrap">
+    <div class="cta-grid reveal">
+      <div class="cta-left">
+        <div class="meander"></div>
+        <h2>Will you join the <span class="gold-text">evolution?</span></h2>
+      </div>
+      <div class="cta-right">
+        <p class="lead">Registration is open to schools across the city. Assemble your team, choose your events, and take your place in the agora.</p>
+        <div class="hero-actions" style="margin-top:28px">
+          <a class="btn solid" href="signup.html" data-magnetic>Begin Registration <span class="arr">&rarr;</span></a>
+          <a class="btn ghost" href="guidelines.html" data-magnetic>Read the Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <div class="bigname">TECHNO<b>VATION</b></div>
+        <p class="blurb">The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala. Greeks to Geeks — the evolution of human intelligence.</p>
+      </div>
+      <div class="reveal" data-d="1">
+        <h5>Navigate</h5>
+        <a href="index.html">Home</a><br>
+        <a href="events.html">Events</a><br>
+        <a href="reps-event.html">Rep's Event</a><br>
+        <a href="guidelines.html">Guidelines</a><br>
+        <a href="signup.html">Sign Up</a><br><a href="team.html">Team</a>
+      </div>
+      <div class="reveal" data-d="2">
+        <h5>The Festival</h5>
+        <a href="#">27 July 2026 · 7:30 AM</a><br>
+        <a href="#">James Long Sarani, Behala, Kolkata 700034</a><br>
+        <a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a><br>
+        <a href="#">#GreeksToGeeks</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> M.P. Birla Foundation HS School · Technovation</span>
+      <span>ΣΟΦΙΑ · From marble to machine · Built for the curious</span>
+    </div>
+  </div>
+</footer>
+
+<script src="hero.js"></script>
+<script src="fx.js"></script>
+<script src="glitch.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+<script src="site.js"></script>
+<script>
+/* countdown to 27 July 2026, 07:30 IST (UTC+5:30 => 02:00 UTC) */
+(function(){
+  var target = new Date(Date.UTC(2026,6,27,2,0,0)).getTime();
+  var els = {};
+  document.querySelectorAll("[data-cd]").forEach(function(e){els[e.getAttribute("data-cd")]=e;});
+  function pad(n){return (n<10?"0":"")+n;}
+  function tick(){
+    var diff = target - Date.now();
+    if(diff<0){ if(els.days)els.days.textContent="00"; if(els.hours)els.hours.textContent="00"; if(els.mins)els.mins.textContent="00"; if(els.secs)els.secs.textContent="00"; return;}
+    var d=Math.floor(diff/86400000);
+    var h=Math.floor(diff%86400000/3600000);
+    var m=Math.floor(diff%3600000/60000);
+    var s=Math.floor(diff%60000/1000);
+    if(els.days)els.days.textContent=d;
+    if(els.hours)els.hours.textContent=pad(h);
+    if(els.mins)els.mins.textContent=pad(m);
+    if(els.secs)els.secs.textContent=pad(s);
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events · TECHNOVATION '26</title>
+<meta name="description" content="Fifteen events across Off-Stage and On-Stage tracks, plus the running order for Technovation '26 — Greeks to Geeks, 27 July 2026, Behala, Kolkata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/jpeg" href="logo-stag.jpg">
+</head>
+<body>
+<div class="circuit-trace"></div><div class="hud-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="grain"></div><div class="scan"></div><div class="vignette"></div>
+<canvas id="fx-bg" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="2" fill="#0a0c10" stroke="#dde6f1" stroke-opacity=".5"/><path d="M9 23V12h1.6v11zm5.2 0V12H16v11zm5.2 0V12H21v11zM7 12l9-4.5L25 12zM7 24.5h18V26H7z" fill="#dde6f1"/></svg></span>
+    <span>TECHNO<b>VATION</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="events.html" class="active">Events</a>
+    <a href="reps-event.html">Rep's Event</a>
+    <a href="guidelines.html">Guidelines</a>
+    <a href="team.html" data-auth-team>Team</a>
+    <a class="btn sm nav-cta" href="signup.html" data-auth-cta data-magnetic>Sign Up <span class="arr">&rarr;</span></a>
+  </nav>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <span class="ring"></span><span class="ring r2"></span>
+  <div class="wrap">
+    <div class="crumb reveal in">HOME / <b>EVENTS</b></div>
+    <h1 class="reveal in" data-d="1">The Events</h1>
+    <p class="sub reveal in" data-d="2">Fifteen arenas across two tracks — thirteen Off-Stage, two On-Stage. Choose your battleground, or conquer them all.</p>
+  </div>
+</section>
+
+<!-- EVENTS GRID -->
+<section style="padding-bottom:clamp(50px,7vw,90px)">
+  <div class="wide">
+    <div class="chips reveal">
+      <button class="chip active" data-filter="all">All Events</button>
+      <button class="chip" data-filter="offstage">Off-Stage</button>
+      <button class="chip" data-filter="onstage">On-Stage</button>
+      <button class="chip" data-filter="code">Coding</button>
+      <button class="chip" data-filter="ai">AI &amp; Data</button>
+      <button class="chip" data-filter="creative">Creative</button>
+      <button class="chip" data-filter="gaming">Gaming</button>
+      <button class="chip" data-filter="robotics">Robotics</button>
+    </div>
+
+    <div class="events-grid" id="grid">
+
+      <a class="ev-card reveal" data-cat="offstage code" href="event-hindrance.html">
+        <span class="idx">01</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Hindrance</h3>
+        <span class="ev-disc">Rapid Coding Event</span>
+        <p>Three back-to-back rounds: story-based problem solving, a surprise “switch” round revealed on the day, and a rapid coding sprint. Only two of three teammates sit per round. Python, Java or C++.</p>
+        <div class="ev-foot"><span class="tag team">Team of 3</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage code" href="event-breach.html">
+        <span class="idx">02</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l8 4v5c0 5-3.5 8-8 11-4.5-3-8-6-8-11V6z"/><path d="M9.5 11.5l2 2 3.5-4"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Breach</h3>
+        <span class="ev-disc">Hackathon</span>
+        <p>A build-on-the-spot hackathon. Teams ship a working software project and demo a live prototype — judged on originality, usability, technical depth and presentation.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage ai" href="event-neuralysis.html">
+        <span class="idx">03</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><path d="M8 12h2M14 12l2-5M14 12l2 5"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Neuralysis</h3>
+        <span class="ev-disc">AI Prompting Event</span>
+        <p>Two rounds of heavy prompt engineering. No AI tool is off-limits — bring your own device and mobile data, and coax the very best out of the machine.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 11–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage gaming" href="event-retrieval.html">
+        <span class="idx">04</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-4 1 2-6z"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Retrieval</h3>
+        <span class="ev-disc">Web Game · Wikirace</span>
+        <p>Sprint from a start page to a target using only in-page hyperlinks — no search bar, no new tabs. Two rounds, from familiar paths to abstract, lateral leaps.</p>
+        <div class="ev-foot"><span class="tag team">Team of 1</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage gaming" href="event-el-clasico.html">
+        <span class="idx">05</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 11v2M6 12h2M15.5 11.5h.01M18 13h.01"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>El Clasico</h3>
+        <span class="ev-disc">FIFA · EA SPORTS FC 26</span>
+        <p>Football on PlayStation 5. A group stage into knockouts, eight-minute matches (four-minute halves). Glory decided on the virtual pitch.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage ai" href="event-inference.html">
+        <span class="idx">06</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 4-6"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Inference</h3>
+        <span class="ev-disc">Data Analysis</span>
+        <p>Analyse a dataset and surface the insight. Use Excel, Python or any analytics tool — submit your extraction code first, then a report on what the data reveals.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 10–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage creative" href="event-outreach.html">
+        <span class="idx">07</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Outreach</h3>
+        <span class="ev-disc">Documentary Making</span>
+        <p>Tell a story in film. Teams produce a short documentary on a given theme — judged on storytelling, creativity, technical execution and relevance. Mobile cameras welcome.</p>
+        <div class="ev-foot"><span class="tag team">Team of 3–5</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage robotics" href="event-robology.html">
+        <span class="idx">08</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 8V4M9 4h6M9 13h.01M15 13h.01M2 12v3M22 12v3"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Robology</h3>
+        <span class="ev-disc">Robotics Event</span>
+        <p>Design, build and program a robot to take on an arena task. Two rounds — build, then performance testing — judged on innovation, precision and problem-solving.</p>
+        <div class="ev-foot"><span class="tag team">Team of 3</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage code" href="event-end-to-end.html">
+        <span class="idx">09</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M7 12l2 2-2 2M12 16h4"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>End-to-End</h3>
+        <span class="ev-disc">Web Development Event</span>
+        <p>Build a functional website to a given brief. Round one is UI/UX, round two is functionality and responsiveness. Any framework, any stack is fair game.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 9–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage ai creative" href="event-wavered.html">
+        <span class="idx">10</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 12h2l2-6 3 14 3-10 2 4h6"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Wavered</h3>
+        <span class="ev-disc">AI Music Making</span>
+        <p>Compose music with AI tools in a single submission round. Originality, creativity and clever use of the tools carry the day. Bring your own device.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 11–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage gaming" href="event-blockade.html">
+        <span class="idx">11</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>Blockade</h3>
+        <span class="ev-disc">Minecraft Build Battle</span>
+        <p>A redstone build battle. Given a mechanism to engineer from scratch, the simplest, cleanest contraption that does the job takes the win.</p>
+        <div class="ev-foot"><span class="tag">Solo</span><span class="tag">Classes 6–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal feat-card" data-cat="offstage" href="event-grid-lock.html" style="border-color:rgba(206,221,236,.45)">
+        <span class="idx">12</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor" fill-opacity=".25"/></svg></span>
+        <span class="ev-greek" style="color:var(--gold-200)">Rep’s Event · Mandatory</span>
+        <h3>Grid-Lock</h3>
+        <span class="ev-disc">Rep’s Event · Digital Clue Hunt</span>
+        <p>A multi-stage digital trail of clues and challenges, each unlocking the next. Tests logic, technical skill and speed — and every participating school’s reps must take part.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Mandatory</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="offstage creative" href="event-b-roll.html">
+        <span class="idx">13</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 5v4M11 5v4M15 5v4M19 5v4"/></svg></span>
+        <span class="ev-greek">Off-Stage</span>
+        <h3>B-Roll</h3>
+        <span class="ev-disc">Creative Media</span>
+        <p>A creative media event for the storytellers behind the lens. Full format and rules will be announced through the official channels.</p>
+        <div class="ev-foot"><span class="tag">Details TBA</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+      <a class="ev-card reveal" data-cat="onstage" href="event-socrates.html">
+        <span class="idx">14</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.3M12 17h.01"/></svg></span>
+        <span class="ev-greek" style="color:var(--gold-200)">On-Stage</span>
+        <h3>Socrates</h3>
+        <span class="ev-disc">IT Quiz · Junior & Senior</span>
+        <p>The IT Quiz in two divisions — Junior (classes 6–8) and Senior (9–12). Prelims for each, with the top six teams advancing to the on-stage finals.</p>
+        <div class="ev-foot"><span class="tag team">Team of 3</span><span class="tag">Classes 6–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+
+      <a class="ev-card reveal" data-cat="onstage creative" href="event-advantage.html">
+        <span class="idx">15</span>
+        <span class="ev-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11l16-6v14L3 13z"/><path d="M3 11v2M8 9.5v6.5"/></svg></span>
+        <span class="ev-greek" style="color:var(--gold-200)">On-Stage</span>
+        <h3>Advantage</h3>
+        <span class="ev-disc">Digital Marketing Event</span>
+        <p>Build a full marketing campaign for a pre-assigned product — brand, USP, audience, socials and an 8-slide deck — then face an on-the-spot crisis challenge and pitch to the judges.</p>
+        <div class="ev-foot"><span class="tag team">Team of 2</span><span class="tag">Classes 11–12</span><span class="more">View event &rarr;</span></div>
+      </a>
+
+    </div>
+    <p class="note center" style="margin-top:30px">One representative team per school for select events · Some events carry class limits — see each card. Final formats are confirmed through the official coordination channels.</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="gold-rule reveal"></div></div>
+
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <div class="bigname">TECHNO<b>VATION</b></div>
+        <p class="blurb">The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala. Greeks to Geeks — the evolution of human intelligence.</p>
+      </div>
+      <div class="reveal" data-d="1"><h5>Navigate</h5><a href="index.html">Home</a><br><a href="events.html">Events</a><br><a href="reps-event.html">Rep's Event</a><br><a href="guidelines.html">Guidelines</a><br><a href="signup.html">Sign Up</a><br><a href="team.html">Team</a></div>
+      <div class="reveal" data-d="2"><h5>The Festival</h5><a href="#">27 July 2026 · 7:30 AM</a><br><a href="#">James Long Sarani, Behala, Kolkata 700034</a><br><a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a><br><a href="#">#GreeksToGeeks</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> M.P. Birla Foundation HS School · Technovation</span><span>ΣΟΦΙΑ · From marble to machine · Built for the curious</span></div>
+  </div>
+</footer>
+
+<script src="fx.js"></script>
+<script src="glitch.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+<script src="site.js"></script>
+<script>
+/* filter chips */
+(function(){
+  var chips=document.querySelectorAll(".chip");
+  var cards=document.querySelectorAll("#grid .ev-card");
+  chips.forEach(function(c){
+    c.addEventListener("click",function(){
+      chips.forEach(function(x){x.classList.remove("active");});
+      c.classList.add("active");
+      var f=c.getAttribute("data-filter");
+      cards.forEach(function(card){
+        var show = f==="all" || (card.getAttribute("data-cat")||"").indexOf(f)>-1;
+        card.classList.toggle("hide", !show);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

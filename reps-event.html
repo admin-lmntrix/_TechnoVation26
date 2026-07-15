@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid-Lock · The Rep's Event · TECHNOVATION '26</title>
+<meta name="description" content="Grid-Lock — the mandatory Rep's Event of Technovation '26. Two representatives per school race through a multi-stage digital trail of clues, each unlocking the next. 27 July 2026, Behala, Kolkata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/jpeg" href="logo-stag.jpg">
+</head>
+<body>
+<div class="circuit-trace"></div><div class="hud-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="grain"></div><div class="scan"></div><div class="vignette"></div>
+<canvas id="fx-bg" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="2" fill="#0a0c10" stroke="#dde6f1" stroke-opacity=".5"/><path d="M9 23V12h1.6v11zm5.2 0V12H16v11zm5.2 0V12H21v11zM7 12l9-4.5L25 12zM7 24.5h18V26H7z" fill="#dde6f1"/></svg></span>
+    <span>TECHNO<b>VATION</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="reps-event.html" class="active">Rep's Event</a>
+    <a href="guidelines.html">Guidelines</a>
+    <a href="team.html" data-auth-team>Team</a>
+    <a class="btn sm nav-cta" href="signup.html" data-auth-cta data-magnetic>Sign Up <span class="arr">&rarr;</span></a>
+  </nav>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="symp-hero">
+  <canvas id="rep-canvas"></canvas>
+  <div class="inner">
+    <span class="badge reveal in"><span class="pip"></span> Rep's Event · Mandatory for every participating school</span>
+    <h1 class="symp-title reveal in" data-d="1">Grid-<span class="gold-text">Lock</span></h1>
+    <p class="desc reveal in" data-d="2">Every school sends two representatives — and this is the arena they cannot skip. A multi-stage digital trail of clues and challenges, each one locking the next until it is solved. A test of logic, technical skill and sheer speed.</p>
+    <div class="symp-meta reveal in" data-d="3">
+      <span>Team · <b>2 School Reps</b></span>
+      <span>Format · <b>Multi-Stage Trail</b></span>
+      <span>Tests · <b>Logic · Tech · Speed</b></span>
+      <span>Devices · <b>Mandatory</b></span>
+    </div>
+    <div class="hero-actions reveal in" data-d="4" style="justify-content:flex-start">
+      <a class="btn solid" href="signup.html" data-magnetic>Register Your Reps <span class="arr">&rarr;</span></a>
+      <a class="btn ghost" href="events.html" data-magnetic>&larr; All Events</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS ============ -->
+<section class="pad-y">
+  <div class="wrap">
+    <div class="center mb-l">
+      <span class="eyebrow two reveal">The Rep's Event</span>
+      <h2 class="reveal" data-d="1" style="margin-top:14px">One Trail, Every <span class="gold-text">School</span></h2>
+      <p class="lead reveal" data-d="2" style="margin:16px auto 0;max-width:62ch">Grid-Lock is the one event no delegation can sit out. The two student representatives each school sends to Technovation '26 take it on together — a chain of locked digital stages where solving one clue is the only way to reach the next.</p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat reveal">
+        <div class="fn">Ⅰ</div>
+        <h4>The Trail</h4>
+        <p>The challenge runs in multiple stages, each unlocking the one after it. Crack the clue in front of you, and the next gate opens; stall, and the trail holds you where you are.</p>
+      </article>
+      <article class="feat reveal" data-d="1">
+        <div class="fn">Ⅱ</div>
+        <h4>The Skills</h4>
+        <p>It rewards a rare mix — logical reasoning to read each puzzle, technical skill to work the tools, and the speed to stay ahead of every other school on the board.</p>
+      </article>
+      <article class="feat reveal" data-d="2">
+        <div class="fn">Ⅲ</div>
+        <h4>The Mandate</h4>
+        <p>Participation is compulsory for all schools. Your two representatives must remain present throughout the fest, accompanied by their Teacher-in-Charge.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="gold-rule reveal"></div></div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="pad-y" style="padding-top:clamp(20px,4vw,60px)">
+  <div class="wrap">
+    <div class="center mb-l">
+      <span class="eyebrow two reveal">How It Works</span>
+      <h2 class="reveal" data-d="1" style="margin-top:14px">Lock by <span class="gold-text">Lock</span></h2>
+      <p class="reveal" data-d="2" style="margin:14px auto 0;max-width:56ch;color:var(--marble-200);font-style:italic">The shape of the run is below. The actual clues, tools and targets stay sealed until the event begins on the day.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="slot reveal"><div class="time">Lock<br>01</div><span class="node"></span><div class="card"><h4>Briefing &amp; First Gate</h4><span class="where">Devices ready · Mobile data on</span><p>Reps assemble, rules are read, and the opening clue is released to every team at once. The race begins the moment the first gate appears.</p></div></div>
+      <div class="slot reveal" data-d="1"><div class="time">Lock<br>02</div><span class="node"></span><div class="card"><h4>Reasoning Stage</h4><span class="where">Logic-led</span><p>An early puzzle that rewards clear thinking over raw tooling — read it right and the next lock yields.</p></div></div>
+      <div class="slot key reveal"><div class="time">Lock<br>03</div><span class="node"></span><div class="card"><h4>Technical Stage</h4><span class="where">Hands on the tools</span><p>A challenge that puts your technical skill to work on the device in front of you. Precision counts as much as pace.</p></div></div>
+      <div class="slot reveal" data-d="1"><div class="time">Lock<br>04</div><span class="node"></span><div class="card"><h4>Speed Stage</h4><span class="where">Clock running</span><p>The trail tightens. Stages come faster and the gap between schools is decided on who keeps their nerve.</p></div></div>
+      <div class="slot key reveal"><div class="time">Final<br>Lock</div><span class="node"></span><div class="card"><h4>The Last Gate</h4><span class="where">Standings decided</span><p>The closing stage seals the run. Order of completion and accuracy across the trail settle the final placements.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="gold-rule reveal"></div></div>
+
+<!-- ============ WHO COMPETES ============ -->
+<section class="pad-y" style="padding-top:clamp(20px,4vw,60px)">
+  <div class="wrap">
+    <div class="split">
+      <div class="kicker-block reveal">
+        <span class="eyebrow two">Who Competes</span>
+        <h2>Your Two <span class="gold-text">Representatives</span></h2>
+        <p class="lead">Grid-Lock is run by the very students who carry your school's flag for the day.</p>
+        <p>Each participating school is represented by <strong>two student representatives</strong>, who must remain present throughout the fest and are accompanied by a Teacher-in-Charge. Those same two reps form your Grid-Lock team.</p>
+        <p>Because the trail is digital from the first gate to the last, <strong>devices are mandatory</strong>. Wi-Fi may not be provided on campus, so reps should carry their own mobile data for any stage that needs a connection.</p>
+        <div class="hero-actions" style="margin-top:30px">
+          <a class="btn solid" href="signup.html" data-magnetic>Register Your School <span class="arr">&rarr;</span></a>
+          <a class="btn ghost" href="guidelines.html" data-magnetic>Full Guidelines</a>
+        </div>
+      </div>
+      <div class="reveal" data-d="2">
+        <div class="panel gold-edge">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <h4 style="font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;margin-bottom:20px">Rep's Event Essentials</h4>
+          <div class="sum-row"><span class="k">Team Size</span><span class="v">2 representatives</span></div>
+          <div class="sum-row"><span class="k">Participation</span><span class="v">Mandatory · all schools</span></div>
+          <div class="sum-row"><span class="k">Format</span><span class="v">Multi-stage digital trail</span></div>
+          <div class="sum-row"><span class="k">Tests</span><span class="v">Logic · technical · speed</span></div>
+          <div class="sum-row"><span class="k">Devices</span><span class="v">Mandatory · bring your own</span></div>
+          <div class="sum-row"><span class="k">Connectivity</span><span class="v">Carry your own mobile data</span></div>
+          <div class="sum-row"><span class="k">Presence</span><span class="v">Reps stay for the whole fest</span></div>
+          <p class="note" style="margin-top:18px;text-align:center">Report at 7:30 AM sharp · in school uniform · with a valid School ID and your Teacher-in-Charge.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="pad-y">
+  <div class="wrap center">
+    <div class="meander reveal" style="max-width:340px;margin-inline:auto"></div>
+    <h2 class="reveal" data-d="1" style="font-size:clamp(2.2rem,6vw,4.4rem);margin-top:34px">Send your reps to the <span class="gold-text">grid.</span></h2>
+    <p class="lead reveal" data-d="2" style="margin:18px auto 0;max-width:48ch">Grid-Lock is mandatory for every participating school — so name your two representatives and register before the day.</p>
+    <div class="hero-actions reveal" data-d="3" style="justify-content:center;margin-top:36px">
+      <a class="btn solid" href="signup.html" data-magnetic>Register Now <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <div class="bigname">TECHNO<b>VATION</b></div>
+        <p class="blurb">The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala. Greeks to Geeks — the evolution of human intelligence.</p>
+      </div>
+      <div class="reveal" data-d="1"><h5>Navigate</h5><a href="index.html">Home</a><br><a href="events.html">Events</a><br><a href="reps-event.html">Rep's Event</a><br><a href="guidelines.html">Guidelines</a><br><a href="signup.html">Sign Up</a><br><a href="team.html">Team</a></div>
+      <div class="reveal" data-d="2"><h5>The Festival</h5><a href="#">27 July 2026 · 7:30 AM</a><br><a href="#">James Long Sarani, Behala, Kolkata 700034</a><br><a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a><br><a href="#">#GreeksToGeeks</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> M.P. Birla Foundation HS School · Technovation</span><span>ΣΟΦΙΑ · From marble to machine · Built for the curious</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="reps-event.js"></script>
+<script src="fx.js"></script>
+<script src="glitch.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

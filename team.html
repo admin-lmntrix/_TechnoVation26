@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team · TECHNOVATION '26</title>
+<meta name="description" content="Your Technovation '26 team page — see who has signed up for which events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/jpeg" href="logo-stag.jpg">
+<style>
+  .team-head{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid rgba(206,221,236,.14)}
+  .team-head .vlabel{font-family:var(--tech);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-300);margin-bottom:8px}
+  .team-head .school-name{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.7rem);color:var(--marble-50);line-height:1.05}
+  .team-head .counts{font-family:var(--tech);font-size:.78rem;color:var(--stone-400);margin-top:8px;letter-spacing:.04em}
+  .school-switch label{display:block;font-family:var(--tech);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400);margin-bottom:7px}
+  .school-switch select{background:#0a0c10;color:var(--marble-100);border:1px solid rgba(206,221,236,.22);border-radius:3px;padding:11px 14px;font-family:var(--tech);font-size:.9rem;min-width:240px;cursor:pointer}
+
+  .team-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:20px;align-items:start}
+  @media(max-width:820px){.team-grid{grid-template-columns:1fr}}
+  .tcard{padding:24px}
+  .tcard h3{font-family:var(--tech);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-200);margin:0 0 16px;display:flex;align-items:center;gap:10px}
+  .tcard h3 .cnt{font-size:.7rem;color:var(--navy-900);background:var(--gold-300);border-radius:20px;padding:2px 9px;font-weight:600}
+
+  .person{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(206,221,236,.08)}
+  .person:last-child{border-bottom:0}
+  .person .pname{font-family:var(--serif);font-size:1.12rem;color:var(--marble-100);min-width:120px;flex-shrink:0}
+  .person .pmail{font-family:var(--tech);font-size:.74rem;color:var(--stone-500)}
+  .person .tags{display:flex;flex-wrap:wrap;gap:6px;flex:1}
+  .etag{font-family:var(--tech);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-300);border:1px solid rgba(206,221,236,.22);border-radius:20px;padding:3px 9px;white-space:nowrap}
+  .rm{appearance:none;background:none;border:1px solid rgba(232,137,111,.4);color:#e8896f;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.8rem;line-height:1;flex-shrink:0;transition:background .2s,border-color .2s}
+  .rm:hover{background:rgba(232,137,111,.14);border-color:#e8896f}
+  .empty{font-family:var(--serif);font-style:italic;color:var(--stone-500);padding:10px 0}
+
+  .add-box{margin-top:22px;padding-top:20px;border-top:1px dashed rgba(206,221,236,.18)}
+  .add-box h4{font-family:var(--tech);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400);margin:0 0 12px}
+  .add-box .ev-mini{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:10px 0 12px}
+  .add-box .ev-mini label{display:flex;align-items:center;gap:7px;font-family:var(--tech);font-size:.72rem;color:var(--marble-200);cursor:pointer;padding:5px 7px;border:1px solid rgba(206,221,236,.12);border-radius:3px}
+  .add-box .ev-mini input{accent-color:#9fb3c8}
+  .add-err{color:#e8896f;font-family:var(--tech);font-size:.76rem;min-height:1.1em;margin:4px 0 10px}
+
+  .host-summary{font-family:var(--tech);font-size:.76rem;color:var(--stone-400);letter-spacing:.04em;margin-bottom:24px}
+  .gate{max-width:520px;margin:60px auto;text-align:center}
+
+  .acct-bar{margin-top:30px;padding-top:20px;border-top:1px solid rgba(206,221,236,.1);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--tech);font-size:.74rem;color:var(--stone-400);letter-spacing:.03em}
+  .danger-link{appearance:none;background:none;border:1px solid rgba(232,137,111,.4);color:#e8896f;font-family:var(--tech);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 15px;border-radius:3px;cursor:pointer;transition:background .2s,border-color .2s}
+  .danger-link:hover{background:rgba(232,137,111,.14);border-color:#e8896f}
+
+  /* ---- members grouped by event (slots + drag-and-drop) ---- */
+  .dnd-hint{font-family:var(--tech);font-size:.7rem;color:var(--stone-500);letter-spacing:.03em;margin:-6px 0 18px;line-height:1.5}
+  .evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+  .evcard{border:1px solid rgba(206,221,236,.14);border-radius:5px;background:rgba(255,255,255,.014);padding:14px 14px 15px}
+  .evcard.full{border-color:rgba(127,209,160,.3)}
+  .evcard.over{border-color:rgba(232,137,111,.45)}
+  .evhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:11px}
+  .evname{font-family:var(--tech);font-size:.71rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-200)}
+  .evcount{font-family:var(--tech);font-size:.66rem;color:var(--stone-500);letter-spacing:.05em;white-space:nowrap}
+  .evcount.full{color:#7fd1a0}
+  .evcount.over{color:#e8896f}
+  .slots{display:flex;flex-direction:column;gap:7px}
+  .slot{min-height:40px;border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 11px;box-sizing:border-box}
+  .slot.filled{background:rgba(206,221,236,.06);border:1px solid rgba(206,221,236,.18)}
+  .slot.filled .cname{font-family:var(--serif);font-size:1.04rem;color:var(--marble-100);line-height:1.2}
+  .slot.over{border-color:rgba(232,137,111,.5);background:rgba(232,137,111,.07)}
+  .slot.empty{border:1px dashed rgba(206,221,236,.2);color:var(--stone-500);font-family:var(--tech);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;justify-content:center}
+  .manage .slot.filled[draggable="true"]{cursor:grab}
+  .manage .slot.filled[draggable="true"]:active{cursor:grabbing}
+  .slot.dragging{opacity:.35}
+  .slot.drop-hot{border-style:solid;border-color:var(--gold-300);background:rgba(206,221,236,.14);box-shadow:0 0 0 1px var(--gold-300) inset}
+  .chip-x{appearance:none;background:none;border:0;color:var(--stone-500);cursor:pointer;font-size:1.15rem;line-height:.7;padding:0 1px 0 6px;flex-shrink:0;transition:color .15s}
+  .chip-x:hover{color:#e8896f}
+  .chip-x.del:hover{color:#e8896f}
+
+  .bench{margin-top:18px;padding:13px 15px;border:1px dashed rgba(206,221,236,.22);border-radius:5px;background:rgba(255,255,255,.01)}
+  .bench h4{font-family:var(--tech);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-400);margin:0 0 11px;font-weight:500}
+  .bench .slots{flex-direction:row;flex-wrap:wrap;gap:8px}
+  .bench .slot.filled{min-height:0;padding:7px 10px}
+  .bench.drop-hot{border-style:solid;border-color:var(--gold-300);background:rgba(206,221,236,.09)}
+
+  .host-actions{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+
+  /* ---- themed confirmation dialog (shown before any removal) ---- */
+  .confirm-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.74);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .18s}
+  .confirm-overlay.show{opacity:1}
+  .confirm-box{max-width:440px;width:100%;background:#0a0c10;border:1px solid rgba(206,221,236,.2);border-radius:7px;padding:26px 26px 22px;box-shadow:0 24px 70px rgba(0,0,0,.6);transform:translateY(8px);transition:transform .18s}
+  .confirm-overlay.show .confirm-box{transform:none}
+  .confirm-box.danger{border-color:rgba(232,137,111,.5)}
+  .confirm-title{font-family:var(--display);font-size:1.4rem;color:var(--marble-50);margin:0 0 10px;line-height:1.15}
+  .confirm-box.danger .confirm-title{color:#f0a48f}
+  .confirm-body{font-family:var(--serif);font-size:1.04rem;color:var(--marble-200);line-height:1.5;margin:0 0 22px}
+  .confirm-input{width:100%;box-sizing:border-box;margin:0 0 20px;padding:12px 14px;background:rgba(255,255,255,.02);border:1px solid rgba(206,221,236,.24);border-radius:4px;color:var(--marble-50);font-family:var(--serif);font-size:1.04rem;letter-spacing:.02em}
+  .confirm-input:focus{outline:none;border-color:var(--gold-300);background:rgba(206,221,236,.05)}
+  .confirm-row{display:flex;justify-content:flex-end;gap:12px}
+  .confirm-cancel,.confirm-ok{appearance:none;font-family:var(--tech);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;border-radius:4px;cursor:pointer;border:1px solid;transition:background .15s,border-color .15s,color .15s}
+  .confirm-cancel{background:none;border-color:rgba(206,221,236,.24);color:var(--marble-200)}
+  .confirm-cancel:hover{border-color:var(--marble-100);color:var(--marble-50)}
+  .confirm-ok{background:rgba(206,221,236,.1);border-color:rgba(206,221,236,.3);color:var(--marble-50)}
+  .confirm-ok:hover{background:rgba(206,221,236,.18)}
+  .confirm-ok.danger{background:rgba(232,137,111,.16);border-color:rgba(232,137,111,.55);color:#f0a48f}
+  .confirm-ok.danger:hover{background:rgba(232,137,111,.28)}
+</style>
+</head>
+<body>
+<div class="circuit-trace"></div><div class="hud-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="grain"></div><div class="scan"></div><div class="vignette"></div>
+<canvas id="fx-bg" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="2" fill="#0a0c10" stroke="#dde6f1" stroke-opacity=".5"/><path d="M9 23V12h1.6v11zm5.2 0V12H16v11zm5.2 0V12H21v11zM7 12l9-4.5L25 12zM7 24.5h18V26H7z" fill="#dde6f1"/></svg></span>
+    <span>TECHNO<b>VATION</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="reps-event.html">Rep's Event</a>
+    <a href="guidelines.html">Guidelines</a>
+    <a href="team.html" class="active" data-auth-team>Team</a>
+    <a class="btn sm nav-cta" href="signup.html" data-auth-cta data-magnetic>Sign Up <span class="arr">&rarr;</span></a>
+  </nav>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<section class="page-head">
+  <span class="ring"></span><span class="ring r2"></span>
+  <div class="wrap">
+    <div class="crumb reveal in">HOME / <b>TEAM</b></div>
+    <h1 class="reveal in" data-d="1">Team Roster</h1>
+  </div>
+</section>
+
+<section class="pad-y">
+  <div class="wrap" id="team-root"><!-- rendered by script --></div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <div class="bigname">TECHNO<b>VATION</b></div>
+        <p class="blurb">The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala. Greeks to Geeks — the evolution of human intelligence.</p>
+      </div>
+      <div class="reveal" data-d="1"><h5>Navigate</h5><a href="index.html">Home</a><br><a href="events.html">Events</a><br><a href="reps-event.html">Rep's Event</a><br><a href="guidelines.html">Guidelines</a><br><a href="signup.html">Sign Up</a><br><a href="team.html">Team</a></div>
+      <div class="reveal" data-d="2"><h5>The Festival</h5><a href="#">27 July 2026 · 7:30 AM</a><br><a href="#">James Long Sarani, Behala, Kolkata 700034</a><br><a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a><br><a href="#">#GreeksToGeeks</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> M.P. Birla Foundation HS School · Technovation</span><span>ΣΟΦΙΑ · From marble to machine · Built for the curious</span></div>
+  </div>
+</footer>
+
+<script src="fx.js"></script>
+<script src="glitch.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+<script src="site.js"></script>
+<script>
+(async function () {
+  if (!window.Auth) return;
+  var root = document.getElementById("team-root");
+  root.innerHTML = '<div class="empty" style="padding:50px 0">Loading…</div>';
+
+  function esc(s) { return (s || "").replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function setMinus(a, e) { return (a || []).filter(function (x) { return x !== e; }); }
+  function setPlus(a, e) { var r = (a || []).slice(); if (e && r.indexOf(e) < 0) r.push(e); return r; }
+
+  // themed confirm dialog -> resolves true/false (or the typed password when requirePassword). Used before every removal.
+  function confirmAction(opts) {
+    return new Promise(function (resolve) {
+      var ov = document.createElement("div");
+      ov.className = "confirm-overlay";
+      var box = document.createElement("div");
+      box.className = "confirm-box" + (opts.danger ? " danger" : "");
+      var h = document.createElement("h3"); h.className = "confirm-title"; h.textContent = opts.title || "Are you sure?";
+      var p = document.createElement("p"); p.className = "confirm-body"; p.textContent = opts.body || "";
+      box.appendChild(h); box.appendChild(p);
+      var input = null;
+      if (opts.requirePassword) {
+        input = document.createElement("input");
+        input.type = "password"; input.className = "confirm-input";
+        input.placeholder = opts.inputPlaceholder || "Your password";
+        input.setAttribute("autocomplete", "current-password");
+        box.appendChild(input);
+      }
+      var row = document.createElement("div"); row.className = "confirm-row";
+      var cancel = document.createElement("button"); cancel.className = "confirm-cancel"; cancel.type = "button"; cancel.textContent = opts.cancelLabel || "Cancel";
+      var ok = document.createElement("button"); ok.className = "confirm-ok" + (opts.danger ? " danger" : ""); ok.type = "button"; ok.textContent = opts.confirmLabel || "Confirm";
+      row.appendChild(cancel); row.appendChild(ok);
+      box.appendChild(row);
+      ov.appendChild(box); document.body.appendChild(ov);
+      function close(val) { document.removeEventListener("keydown", onKey); ov.remove(); resolve(val); }
+      function doConfirm() { if (input && !input.value) { input.focus(); return; } close(input ? input.value : true); }
+      function onKey(e) { if (e.key === "Escape") close(false); else if (e.key === "Enter") doConfirm(); }
+      cancel.addEventListener("click", function () { close(false); });
+      ok.addEventListener("click", doConfirm);
+      ov.addEventListener("click", function (e) { if (e.target === ov) close(false); });
+      document.addEventListener("keydown", onKey);
+      setTimeout(function () { (input || ok).focus(); }, 30);
+      requestAnimationFrame(function () { ov.classList.add("show"); });
+    });
+  }
+
+  function gateHTML(msg) {
+    return '<div class="gate"><div class="panel" style="padding:40px"><div class="corner"></div>' +
+      '<h2 style="font-family:var(--display);color:var(--marble-50);margin:0 0 12px">Members only</h2>' +
+      '<p style="color:var(--marble-200);font-style:italic;margin-bottom:22px">' + (msg || "This page is for signed-in participants. Create an account or log in to see your team.") + '</p>' +
+      '<a class="btn solid" href="signup.html">Sign Up or Log In <span class="arr">&rarr;</span></a></div></div>';
+  }
+
+  var me = await Auth.ready();
+  if (!me) { root.innerHTML = gateHTML(); return; }
+  if (!me.role) { root.innerHTML = gateHTML("Your account does not have a profile yet. Please sign up again."); return; }
+
+  var isHost = me.role === "host";
+
+  var schools;
+  try {
+    if (isHost) schools = await Auth.allSchools();
+    else if (me.schoolId) { var nm = await Auth.getSchoolName(me.schoolId); schools = [{ id: me.schoolId, name: nm }]; }
+    else schools = [];
+  } catch (e) { root.innerHTML = '<div class="empty" style="padding:40px">Could not load data: ' + esc((e && e.message) || ("" + e)) + '</div>'; return; }
+
+  var current = schools.length ? schools[0].id : null;
+  var allHosts = isHost ? await Auth.hosts().catch(function () { return []; }) : [];
+
+  function acctBar() {
+    return '<div class="acct-bar"><span>Signed in as <b style="color:var(--marble-200)">' + esc(me.name) + '</b> · ' +
+      Auth.roleLabel(me.role) + (me.email ? " · " + esc(me.email) : "") + '</span>' +
+      '<button class="danger-link" id="del-acct">Delete account</button></div>';
+  }
+  function wireDelete() {
+    var del = document.getElementById("del-acct");
+    if (del) del.addEventListener("click", function () {
+      confirmAction({
+        title: "Delete your account?",
+        body: "This permanently deletes your account and frees your email to be used again. Enter your password to confirm.",
+        danger: true, confirmLabel: "Delete account",
+        requirePassword: true, inputPlaceholder: "Your password"
+      }).then(function (pw) {
+        if (!pw) return;
+        del.disabled = true; del.textContent = "Deleting…";
+        Auth.deleteAccount(pw).then(function (res) {
+          if (res.ok) { location.href = "index.html"; }
+          else { del.disabled = false; del.textContent = "Delete account"; window.alert(res.error); }
+        });
+      });
+    });
+  }
+
+  async function render() {
+    root.innerHTML = '<div class="empty" style="padding:50px 0">Loading…</div>';
+    var html = "";
+
+    if (isHost) {
+      var ts = await Promise.all(schools.map(function (s) { return Auth.team(s.id); }));
+      var totM = 0, totR = 0;
+      ts.forEach(function (t) { totM += t.members.length; totR += t.reps.length; });
+      html += '<div class="host-summary">HOST VIEW · ' + schools.length + ' school' + (schools.length === 1 ? "" : "s") +
+        ' · ' + totR + ' representative' + (totR === 1 ? "" : "s") + ' · ' + totM + ' member' + (totM === 1 ? "" : "s") + ' registered</div>';
+      html += '<div class="panel tcard" style="margin-bottom:20px"><div class="corner"></div><h3>Host Authorities <span class="cnt">' + allHosts.length + '</span></h3>';
+      allHosts.forEach(function (hh) {
+        html += '<div class="person"><span class="pname">' + esc(hh.name) +
+          (hh.uid === me.uid ? ' <span style="color:var(--stone-500);font-family:var(--tech);font-size:.66rem;letter-spacing:.1em">(you)</span>' : "") +
+          '</span><span class="pmail">' + esc(hh.email) + '</span></div>';
+      });
+      html += '</div>';
+    }
+
+    if (!schools.length) {
+      html += '<div class="empty">No schools have registered yet. ' + (isHost ? "Once a representative signs up, their school will appear here." : "") + '</div>';
+      html += acctBar();
+      root.innerHTML = html; wireDelete(); return;
+    }
+
+    var school = schools.filter(function (s) { return s.id === current; })[0] || schools[0];
+    var t = await Auth.team(school.id);
+    var canManage = me.role === "rep" && me.schoolId === school.id;
+    var canRemove = canManage || isHost; // hosts can remove across all schools (no drag/add)
+
+    // ---- header ----
+    html += '<div class="team-head"><div>' +
+      '<div class="vlabel">' + (isHost ? "Host Authority" : Auth.roleLabel(me.role)) + ' View</div>' +
+      '<div class="school-name">' + esc(school.name) + '</div>' +
+      '<div class="counts">' + t.reps.length + ' representative' + (t.reps.length === 1 ? "" : "s") +
+      ' · ' + t.members.length + ' member' + (t.members.length === 1 ? "" : "s") + '</div></div>';
+    if (isHost) {
+      html += '<div class="host-actions">';
+      if (schools.length > 1) {
+        html += '<div class="school-switch"><label>Viewing school</label><select id="school-sel">' +
+          schools.map(function (s) { return '<option value="' + s.id + '"' + (s.id === school.id ? " selected" : "") + '>' + esc(s.name) + '</option>'; }).join("") +
+          '</select></div>';
+      }
+      html += '<button class="danger-link" id="del-school" title="Remove this school from the list">Remove school</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    // ---- representatives ----
+    html += '<div class="panel tcard" style="margin-bottom:20px"><div class="corner"></div><h3>Representatives</h3>';
+    if (t.reps.length) {
+      t.reps.forEach(function (r) { html += '<div class="person"><span class="pname">' + esc(r.name) + '</span><span class="pmail">' + esc(r.email) + '</span></div>'; });
+    } else { html += '<div class="empty">No representative has signed up for this school yet.</div>'; }
+    html += '</div>';
+
+    // ---- members grouped by event ----
+    var byEvent = {}; Auth.EVENTS.forEach(function (e) { byEvent[e] = []; });
+    var memById = {}, benchM = [];
+    t.members.forEach(function (m) {
+      memById[m.id] = m;
+      if (m.events && m.events.length) { m.events.forEach(function (e) { if (byEvent[e]) byEvent[e].push(m); }); }
+      else benchM.push(m);
+    });
+
+    html += '<div class="panel tcard' + (canManage ? ' manage' : '') + '"><div class="corner"></div>';
+    html += '<h3>Members by Event <span class="cnt">' + t.members.length + '</span></h3>';
+    if (canManage) html += '<div class="dnd-hint">Drag a name onto another event to move them · drop onto a person to swap them out · drop onto the Bench to unassign. Open slots appear only while an event is below its cap.</div>';
+    else if (canRemove) html += '<div class="dnd-hint">Host oversight · use × to take a participant out of an event, or × on the Bench to remove a member from the roster — across any school.</div>';
+
+    html += '<div class="evgrid">';
+    Auth.EVENTS.forEach(function (e) {
+      var lim = Auth.EVENT_LIMITS[e] || 0, list = byEvent[e];
+      if (!canManage && list.length === 0) return;
+      var over = list.length > lim, fullc = (lim > 0 && list.length >= lim);
+      var cls = over ? "over" : (fullc ? "full" : "");
+      html += '<div class="evcard ' + cls + '">';
+      html += '<div class="evhead"><span class="evname">' + esc(e) + '</span><span class="evcount ' + cls + '">' + list.length + '/' + lim + '</span></div>';
+      html += '<div class="slots" data-event="' + esc(e) + '">';
+      list.forEach(function (m, i) {
+        var ov = i >= lim ? " over" : "";
+        html += '<div class="slot filled' + ov + '"' + (canManage ? ' draggable="true"' : '') + ' data-member="' + m.id + '" data-event="' + esc(e) + '">' +
+          '<span class="cname">' + esc(m.name) + '</span>' +
+          (canRemove ? '<button class="chip-x" data-member="' + m.id + '" data-event="' + esc(e) + '" title="Remove from this event">&times;</button>' : "") +
+          '</div>';
+      });
+      for (var sct = list.length; sct < lim; sct++) html += '<div class="slot empty" data-event="' + esc(e) + '">open</div>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+
+    if (benchM.length || canRemove) {
+      html += '<div class="bench" id="bench"><h4>Bench · not in any event</h4><div class="slots" data-event="">';
+      if (benchM.length) {
+        benchM.forEach(function (m) {
+          html += '<div class="slot filled"' + (canManage ? ' draggable="true"' : '') + ' data-member="' + m.id + '" data-event="">' +
+            '<span class="cname">' + esc(m.name) + '</span>' +
+            (canRemove ? '<button class="chip-x del" data-member="' + m.id + '" data-del="1" title="Delete this member from the roster">&times;</button>' : "") +
+            '</div>';
+        });
+      } else { html += '<span class="empty" style="padding:0">Everyone is assigned to at least one event.</span>'; }
+      html += '</div></div>';
+    }
+
+    if (canManage) {
+      html += '<div class="add-box"><h4>Add a member to the roster</h4>' +
+        '<div class="field" style="margin:0"><input type="text" id="add-name" placeholder="Full name of new member"></div>' +
+        '<div class="ev-mini" id="add-picks">' +
+        Auth.EVENTS.map(function (e) {
+          var cnt = (byEvent[e] || []).length, lim = Auth.EVENT_LIMITS[e] || 0, isFull = (lim > 0 && cnt >= lim);
+          return '<label' + (isFull ? ' style="opacity:.4"' : '') + '><input type="checkbox" value="' + esc(e) + '"' + (isFull ? " disabled" : "") + '> ' + esc(e) +
+            ' <span style="opacity:.55;font-size:.66rem">' + cnt + '/' + lim + '</span></label>';
+        }).join("") +
+        '</div><div class="add-err" id="add-err"></div>' +
+        '<button class="btn solid sm" id="add-btn">Add to roster <span class="arr">&rarr;</span></button></div>';
+    }
+
+    html += '</div>'; // close members panel
+    html += acctBar();
+    root.innerHTML = html;
+
+    // ---- wiring ----
+    var sel = document.getElementById("school-sel");
+    if (sel) sel.addEventListener("change", function () { current = sel.value; render(); });
+
+    var delSchool = document.getElementById("del-school");
+    if (delSchool) delSchool.addEventListener("click", function () {
+      var sch = schools.filter(function (s) { return s.id === current; })[0];
+      if (!sch) return;
+      confirmAction({
+        title: "Remove " + sch.name + "?",
+        body: "This deletes the school and everyone tied to it — its representative(s), members, and roster entries — across the whole site. This cannot be undone.",
+        danger: true, confirmLabel: "Remove school"
+      }).then(function (ok) {
+        if (!ok) return;
+        delSchool.disabled = true; delSchool.textContent = "Removing…";
+        root.style.pointerEvents = "none";
+        Auth.deleteSchool(current).then(function (res) {
+          root.style.pointerEvents = "";
+          if (res.ok) {
+            schools = schools.filter(function (s) { return s.id !== current; });
+            current = schools.length ? schools[0].id : null;
+            render();
+          } else { delSchool.disabled = false; delSchool.textContent = "Remove school"; window.alert(res.error); }
+        });
+      });
+    });
+
+    wireDelete();
+    if (!canRemove) return;
+
+    function persist(pairs) {
+      root.style.pointerEvents = "none";
+      Promise.all(pairs.map(function (pr) { return Auth.setMemberEvents({ id: pr[0].id, kind: pr[0].kind }, pr[1]); }))
+        .then(function () { root.style.pointerEvents = ""; render(); })
+        .catch(function () { root.style.pointerEvents = ""; render(); });
+    }
+
+    // remove-from-event (×) and bench delete — reps (own school) and hosts (any school)
+    root.querySelectorAll(".chip-x").forEach(function (b) {
+      b.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        var M = memById[b.getAttribute("data-member")]; if (!M) return;
+        if (b.getAttribute("data-del")) {
+          confirmAction({
+            title: "Remove " + M.name + "?",
+            body: "This permanently removes " + M.name + " from the roster. This cannot be undone.",
+            danger: true, confirmLabel: "Remove member"
+          }).then(function (ok) {
+            if (!ok) return;
+            root.style.pointerEvents = "none";
+            Auth.removeMember({ id: M.id, kind: M.kind }).then(function () { root.style.pointerEvents = ""; render(); });
+          });
+        } else {
+          var evName = b.getAttribute("data-event");
+          confirmAction({
+            title: "Take out of " + evName + "?",
+            body: M.name + " will be removed from " + evName + " and moved to the Bench. You can re-assign them at any time.",
+            confirmLabel: "Remove from event"
+          }).then(function (ok) { if (ok) persist([[M, setMinus(M.events, evName)]]); });
+        }
+      });
+    });
+
+    if (!canManage) return; // hosts can remove (above) but drag & add below are rep-only
+
+    function clearHot() { root.querySelectorAll(".drop-hot").forEach(function (x) { x.classList.remove("drop-hot"); }); }
+    function hotEl(tg) { return (tg.closest && tg.closest("#bench")) ? document.getElementById("bench") : tg; }
+
+    // drag and drop
+    var dragData = null;
+    root.querySelectorAll('.slot.filled[draggable="true"]').forEach(function (chip) {
+      chip.addEventListener("dragstart", function (e) {
+        dragData = { memberId: chip.getAttribute("data-member"), fromEvent: chip.getAttribute("data-event") || "" };
+        chip.classList.add("dragging");
+        if (e.dataTransfer) { e.dataTransfer.effectAllowed = "move"; try { e.dataTransfer.setData("text/plain", dragData.memberId); } catch (_) {} }
+      });
+      chip.addEventListener("dragend", function () { chip.classList.remove("dragging"); clearHot(); dragData = null; });
+    });
+    root.querySelectorAll('.slot.empty, .slot.filled, #bench').forEach(function (tg) {
+      tg.addEventListener("dragover", function (e) { if (!dragData) return; e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = "move"; hotEl(tg).classList.add("drop-hot"); });
+      tg.addEventListener("dragleave", function () { hotEl(tg).classList.remove("drop-hot"); });
+      tg.addEventListener("drop", function (e) { e.preventDefault(); clearHot(); if (!dragData) return; handleDrop(tg, dragData); });
+    });
+
+    function handleDrop(tg, drag) {
+      var X = memById[drag.memberId]; if (!X) return;
+      var from = drag.fromEvent || "";
+      var inBench = tg.id === "bench" || (tg.closest && tg.closest("#bench"));
+      if (inBench) { if (!from) return; persist([[X, setMinus(X.events, from)]]); return; }
+      var targetEvent = tg.getAttribute("data-event");
+      if (!targetEvent) return;
+      if (tg.classList.contains("empty")) {
+        persist([[X, setPlus(setMinus(X.events, from), targetEvent)]]);
+      } else if (tg.classList.contains("filled")) {
+        if (from === targetEvent) return;
+        var yId = tg.getAttribute("data-member");
+        if (!yId || yId === X.id) return;
+        var Y = memById[yId]; if (!Y) return;
+        persist([[X, setPlus(setMinus(X.events, from), targetEvent)], [Y, setMinus(Y.events, targetEvent)]]);
+      }
+    }
+
+    // add member (with cap check)
+    var addBtn = document.getElementById("add-btn");
+    if (addBtn) addBtn.addEventListener("click", function () {
+      var name = document.getElementById("add-name").value;
+      var evs = [];
+      document.querySelectorAll("#add-picks input:checked").forEach(function (c) { evs.push(c.value); });
+      var errEl = document.getElementById("add-err"); errEl.textContent = "";
+      var full = evs.filter(function (e) { return (byEvent[e] || []).length >= (Auth.EVENT_LIMITS[e] || 0); });
+      if (full.length) { errEl.textContent = "Already full: " + full.join(", ") + ". Free a slot first or pick another event."; return; }
+      addBtn.disabled = true; var old = addBtn.innerHTML; addBtn.textContent = "Adding…";
+      Auth.addMember(name, evs).then(function (res) {
+        if (res.ok) render();
+        else { errEl.textContent = res.error; addBtn.disabled = false; addBtn.innerHTML = old; }
+      });
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

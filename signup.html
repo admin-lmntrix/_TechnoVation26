@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up · TECHNOVATION '26</title>
+<meta name="description" content="Create your Technovation '26 account — as a school representative or host authority — and reach your team page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/jpeg" href="logo-stag.jpg">
+<style>
+  /* ===== auth screen — form over a shadowy stag backdrop ===== */
+  .auth-stage{position:relative;z-index:1;min-height:100vh;overflow:hidden}
+
+  /* the stag, sunk into the background as a shadow */
+  .auth-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .auth-bg img{
+    position:absolute;top:50%;right:-5%;transform:translateY(-50%);
+    height:min(94vh,920px);width:auto;max-width:none;
+    opacity:.13;mix-blend-mode:screen;
+    -webkit-mask-image:radial-gradient(78% 76% at 62% 50%,#000 32%,transparent 80%);
+            mask-image:radial-gradient(78% 76% at 62% 50%,#000 32%,transparent 80%);
+  }
+
+  /* form column (left-aligned over the backdrop) */
+  .auth-left{
+    position:relative;z-index:1;display:flex;align-items:center;min-height:100vh;
+    padding:clamp(112px,15vh,170px) clamp(26px,5.5vw,90px) clamp(56px,8vh,90px);
+  }
+  .auth-inner{width:100%;max-width:540px}
+
+  .auth-eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--mech);font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-500);margin-bottom:24px}
+  .auth-eyebrow .dash{width:34px;height:1px;background:linear-gradient(90deg,var(--gold-400),transparent);flex:none}
+  .auth-eyebrow i{font-family:var(--serif);font-style:italic;letter-spacing:.03em;text-transform:none;font-size:.96rem;color:var(--stone-400)}
+
+  .auth-h{font-family:var(--display);font-weight:500;line-height:.98;letter-spacing:.004em;font-size:clamp(2.4rem,4.8vw,3.7rem);color:var(--marble-50);margin-bottom:18px}
+  .auth-h em{display:block;font-style:italic;font-weight:500;background:linear-gradient(96deg,var(--gold-200),var(--gold-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .auth-sub{font-family:var(--serif);font-size:1.08rem;line-height:1.6;color:var(--marble-300);max-width:46ch;margin-bottom:30px}
+
+  /* tabs */
+  .auth-tabs{display:flex;gap:4px;margin-bottom:30px;border-bottom:1px solid rgba(206,221,236,.12)}
+  .auth-tab{appearance:none;background:none;border:0;color:var(--stone-400);font-family:var(--mech);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;padding:12px 14px;cursor:pointer;position:relative;transition:color .25s}
+  .auth-tab:hover{color:var(--marble-200)}
+  .auth-tab.active{color:var(--gold-200)}
+  .auth-tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--gold-300),transparent);box-shadow:0 0 12px var(--gold-400)}
+
+  .auth-pane{display:none}
+  .auth-pane.show{display:block;animation:rise .45s var(--ease) both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* role picker */
+  .role-pick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+  @media(max-width:520px){.role-pick{grid-template-columns:1fr}}
+  .role{position:relative;cursor:pointer}
+  .role input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .role .rbox{display:block;height:100%;padding:13px 13px;border:1px solid rgba(206,221,236,.14);border-radius:3px;background:rgba(10,13,18,.5);transition:border-color .2s,background .2s,box-shadow .2s}
+  .role:hover .rbox{border-color:rgba(206,221,236,.36)}
+  .role input:checked + .rbox{border-color:var(--gold-400);background:rgba(206,221,236,.05);box-shadow:0 0 22px -6px rgba(206,221,236,.45)}
+  .role .rt{font-family:var(--mech);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-300);display:block;margin-bottom:6px}
+  .role .rd{font-family:var(--serif);font-size:1rem;color:var(--marble-100);line-height:1.25}
+
+  /* underline inputs */
+  .auth-left .field{margin-bottom:20px}
+  .auth-left .field label{display:flex;align-items:center;gap:8px;font-family:var(--mech);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-400);margin-bottom:8px}
+  .auth-left .field label::before{content:"";width:5px;height:5px;background:var(--gold-500);transform:rotate(45deg);flex:none;opacity:.85}
+  .auth-left .field .req{color:var(--gold-400)}
+  .auth-left .field input{
+    width:100%;background:transparent;border:0;border-bottom:1px solid rgba(206,221,236,.18);border-radius:0;
+    padding:.62em 0;color:var(--marble-50);font-family:var(--tech);font-size:1rem;letter-spacing:.01em;
+    transition:border-color .3s,box-shadow .3s}
+  .auth-left .field input::placeholder{color:var(--stone-500)}
+  .auth-left .field input:focus{outline:none;border-bottom-color:var(--gold-300);box-shadow:0 1px 0 var(--gold-400)}
+
+  .evt-label{display:flex;align-items:center;gap:8px;font-family:var(--mech);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-400);margin:4px 0 12px}
+  .evt-label::before{content:"";width:5px;height:5px;background:var(--gold-500);transform:rotate(45deg);flex:none;opacity:.85}
+  .evt-label .req{color:var(--gold-400)}
+
+  /* condensed event picks */
+  .auth-left .event-pick{grid-template-columns:1fr 1fr;gap:8px;max-height:266px;overflow:auto;padding:2px 8px 2px 2px;margin:0 -2px}
+  @media(max-width:520px){.auth-left .event-pick{grid-template-columns:1fr}}
+  .auth-left .pick .box{padding:11px 12px;background:rgba(8,11,16,.66)}
+  .auth-left .pick .box .pn{font-size:.92rem}
+  .auth-left .event-pick::-webkit-scrollbar{width:6px}
+  .auth-left .event-pick::-webkit-scrollbar-thumb{background:rgba(206,221,236,.2);border-radius:3px}
+
+  [data-rolefield]{display:none}
+  form[data-role="rep"] .role-rep{display:block}
+  form[data-role="host"] .role-host{display:block}
+
+  .auth-err{color:#e8896f;font-family:var(--mech);font-size:.74rem;letter-spacing:.04em;min-height:1.2em;margin:8px 0 14px}
+
+  .auth-left .btn{width:100%;justify-content:center;letter-spacing:.24em}
+
+  .auth-note{color:var(--stone-500);font-size:.92rem;line-height:1.6;font-family:var(--serif);font-style:italic;margin-top:14px}
+
+  .auth-microfoot{margin-top:32px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;border-top:1px solid rgba(206,221,236,.08);padding-top:18px;font-family:var(--mech);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-500)}
+  .auth-microfoot a{color:var(--gold-400)}
+  .auth-microfoot a:hover{color:var(--gold-200)}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:960px){
+    .auth-left{padding-top:104px}
+    .auth-bg img{right:-34%;height:min(66vh,560px);opacity:.10}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .auth-pane.show{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="circuit-trace"></div><div class="hud-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div><div class="grain"></div><div class="scan"></div><div class="vignette"></div>
+<canvas id="fx-bg" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="2" fill="#0a0c10" stroke="#dde6f1" stroke-opacity=".5"/><path d="M9 23V12h1.6v11zm5.2 0V12H16v11zm5.2 0V12H21v11zM7 12l9-4.5L25 12zM7 24.5h18V26H7z" fill="#dde6f1"/></svg></span>
+    <span>TECHNO<b>VATION</b></span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="reps-event.html">Rep's Event</a>
+    <a href="guidelines.html">Guidelines</a>
+    <a href="team.html" data-auth-team>Team</a>
+    <a class="btn sm nav-cta" href="signup.html" data-auth-cta data-magnetic>Sign Up <span class="arr">&rarr;</span></a>
+  </nav>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<main class="auth-stage">
+  <div class="auth-bg" aria-hidden="true"><img src="logo-stag.jpg" alt=""></div>
+
+  <div class="auth-left">
+    <div class="auth-inner">
+      <div class="auth-eyebrow"><span class="dash"></span> Access <i>· Your team console</i></div>
+      <h1 class="auth-h">Your team<em>panel.</em></h1>
+      <p class="auth-sub">Create an account or log in to reach your team page. School representatives and host staff all begin here.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" type="button" data-tab="signup">Create Account</button>
+        <button class="auth-tab" type="button" data-tab="login">Log In</button>
+      </div>
+
+      <!-- ============ SIGN UP ============ -->
+      <form id="signup-form" class="auth-pane show" novalidate>
+        <div class="role-pick">
+          <label class="role"><input type="radio" name="role" value="rep">
+            <span class="rbox"><span class="rt">Representative</span><span class="rd">Of a school</span></span></label>
+          <label class="role"><input type="radio" name="role" value="host">
+            <span class="rbox"><span class="rt">Host Authority</span><span class="rd">Organising staff</span></span></label>
+        </div>
+
+        <div class="field" data-k="name">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" name="name" autocomplete="name" placeholder="e.g. Aristotle Banerjee">
+        </div>
+        <div class="grid-2">
+          <div class="field" data-k="email">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field" data-k="password">
+            <label>Password <span class="req">*</span></label>
+            <input type="password" name="password" autocomplete="new-password" placeholder="At least 6 characters">
+          </div>
+        </div>
+
+        <div class="field role-rep" data-rolefield data-k="school">
+          <label>School / Institution <span class="req">*</span></label>
+          <input type="text" name="school" list="school-list" placeholder="Your school's name">
+          <datalist id="school-list"></datalist>
+        </div>
+
+
+        <div class="field role-host" data-rolefield data-k="hostCode">
+          <label>Host Access Code <span class="req">*</span></label>
+          <input type="text" name="hostCode" placeholder="Provided to host staff">
+        </div>
+
+        <div class="auth-err" id="su-err"></div>
+        <button class="btn" type="submit">Create Account &amp; Enter <span class="arr">&rarr;</span></button>
+        <p class="auth-note">Your account works across devices — log in anywhere to reach your team page. Your role decides what you can see and do.</p>
+      </form>
+
+      <!-- ============ LOG IN ============ -->
+      <form id="login-form" class="auth-pane" novalidate>
+        <div class="field" data-k="email">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field" data-k="password">
+          <label>Password <span class="req">*</span></label>
+          <input type="password" name="password" autocomplete="current-password" placeholder="Your password">
+        </div>
+        <div class="auth-err" id="li-err"></div>
+        <button class="btn" type="submit">Log In <span class="arr">&rarr;</span></button>
+      </form>
+
+      <div class="auth-microfoot">
+        <span>Technovation '26 · Team Console</span>
+        <a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="reveal">
+        <div class="bigname">TECHNO<b>VATION</b></div>
+        <p class="blurb">The inter-school technology festival of M.P. Birla Foundation Higher Secondary School, Behala. Greeks to Geeks — the evolution of human intelligence.</p>
+      </div>
+      <div class="reveal" data-d="1"><h5>Navigate</h5><a href="index.html">Home</a><br><a href="events.html">Events</a><br><a href="reps-event.html">Rep's Event</a><br><a href="guidelines.html">Guidelines</a><br><a href="signup.html">Sign Up</a><br><a href="team.html">Team</a></div>
+      <div class="reveal" data-d="2"><h5>The Festival</h5><a href="#">27 July 2026 · 7:30 AM</a><br><a href="#">James Long Sarani, Behala, Kolkata 700034</a><br><a href="mailto:admin.lmntrix.work@proton.me">admin.lmntrix.work@proton.me</a><br><a href="#">#GreeksToGeeks</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> M.P. Birla Foundation HS School · Technovation</span><span>ΣΟΦΙΑ · From marble to machine · Built for the curious</span></div>
+  </div>
+</footer>
+
+<script src="fx.js"></script>
+<script src="glitch.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+<script src="site.js"></script>
+<script>
+(function () {
+
+
+  var dl = document.getElementById("school-list");
+  if (dl && window.Auth) {
+    Auth.allSchools().then(function (list) {
+      list.forEach(function (s) { var o = document.createElement("option"); o.value = s.name; dl.appendChild(o); });
+    }).catch(function () {});
+  }
+
+  var tabs = document.querySelectorAll(".auth-tab");
+  var panes = { signup: document.getElementById("signup-form"), login: document.getElementById("login-form") };
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.classList.remove("active"); });
+      t.classList.add("active");
+      for (var k in panes) panes[k].classList.toggle("show", k === t.dataset.tab);
+    });
+  });
+
+  var suForm = document.getElementById("signup-form");
+  suForm.querySelectorAll('input[name="role"]').forEach(function (r) {
+    r.addEventListener("change", function () { suForm.setAttribute("data-role", r.value); });
+  });
+
+  function val(form, name) { var el = form.querySelector('[name="' + name + '"]'); return el ? el.value : ""; }
+  function busy(btn, on, label) { if (!btn) return; if (on) { btn._html = btn.innerHTML; btn.disabled = true; btn.textContent = label; } else { btn.disabled = false; if (btn._html) btn.innerHTML = btn._html; } }
+
+  suForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var errEl = document.getElementById("su-err"); errEl.textContent = "";
+    var btn = suForm.querySelector('button[type="submit"]');
+    var role = (suForm.querySelector('input[name="role"]:checked') || {}).value;
+    var events = [];
+    busy(btn, true, "Creating…");
+    Auth.signUp({
+      role: role, name: val(suForm, "name"), email: val(suForm, "email"),
+      password: val(suForm, "password"), school: val(suForm, "school"),
+      events: events, hostCode: val(suForm, "hostCode")
+    }).then(function (res) {
+      if (res.ok) { location.href = "team.html"; }
+      else { errEl.textContent = res.error; busy(btn, false); }
+    }).catch(function (e2) { errEl.textContent = "Error: " + (e2.message || e2); busy(btn, false); });
+  });
+
+  var liForm = document.getElementById("login-form");
+  liForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var errEl = document.getElementById("li-err"); errEl.textContent = "";
+    var btn = liForm.querySelector('button[type="submit"]');
+    busy(btn, true, "Logging in…");
+    Auth.login(val(liForm, "email"), val(liForm, "password")).then(function (res) {
+      if (res.ok) { location.href = "team.html"; }
+      else { errEl.textContent = res.error; busy(btn, false); }
+    }).catch(function (e2) { errEl.textContent = "Error: " + (e2.message || e2); busy(btn, false); });
+  });
+
+  var first = suForm.querySelector('input[name="role"][value="rep"]');
+  if (first) { first.checked = true; suForm.setAttribute("data-role", "rep"); }
+})();
+</script>
+</body>
+</html>

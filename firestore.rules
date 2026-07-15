@@ -1,0 +1,61 @@
+rules_version = '2';
+
+// TECHNOVATION '26 — Firestore security rules
+// Paste this whole file into: Firebase console → Firestore Database → Rules → Publish.
+// Enforces (on the server) the same permissions the app expects:
+//   • anyone signed in can read the list of schools (needed to join / for host view)
+//   • reps & members can read only their OWN school's people
+//   • reps can add/remove members only in their OWN school
+//   • host authorities can read every school + every host
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function hasProfile() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    function profile() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    function myRole()   { return hasProfile() ? profile().role : ''; }
+    function mySchool() { return hasProfile() ? profile().schoolId : ''; }
+    function isHost()   { return myRole() == 'host'; }
+    function isRep()    { return myRole() == 'rep'; }
+
+    // user profiles (one per signed-in account)
+    match /users/{uid} {
+      allow read:   if signedIn() && (request.auth.uid == uid || isHost() || resource.data.schoolId == mySchool());
+      allow create: if signedIn() && request.auth.uid == uid;
+      allow update: if signedIn() && (
+                      request.auth.uid == uid ||
+                      (isRep() && resource.data.role == 'member' && resource.data.schoolId == mySchool()
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['events'])) ||
+                      (isHost() && resource.data.role == 'member'
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['events']))
+                    );
+      allow delete: if signedIn() && (
+                      request.auth.uid == uid ||
+                      (isRep() && resource.data.role == 'member' && resource.data.schoolId == mySchool()) ||
+                      (isHost() && resource.data.role != 'host')
+                    );
+    }
+
+    // schools (created the first time a rep/member from that school signs up)
+    match /schools/{sid} {
+      allow read:   if signedIn();
+      allow create: if signedIn();
+      allow update: if false;
+      allow delete: if isHost();
+    }
+
+    // members added manually by a rep (no login of their own)
+    match /roster/{rid} {
+      allow read:   if signedIn() && (isHost() || resource.data.schoolId == mySchool());
+      allow create: if isRep() && request.resource.data.schoolId == mySchool();
+      allow update: if (isRep() && resource.data.schoolId == mySchool()) || isHost();
+      allow delete: if (isRep() && resource.data.schoolId == mySchool()) || isHost();
+    }
+  }
+}
